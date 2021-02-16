@@ -1,26 +1,26 @@
 pipeline{
     agent any
     environment{
-        MVN = tool 'MVN_LOCAL/bin/mvn'
-        scannerHome = tool 'SONAR_SCANER/bin/sonar-canner'
+        MVN = tool 'MVN_LOCAL'
+        scannerHome = tool 'SONAR_SCANER'
     }
     stages{
         stage('Build Backend'){
             steps{
-                sh "${MVN} clean package -DskipTests=true"
+                sh "${MVN}/bin/mvn clean package -DskipTests=true"
             }
         }
         
         stage('Unit Tests'){
             steps{
-                sh "${MVN} test"
+                sh "${MVN}bin/mvn test"
             }
         }
 
         stage('Sonar Anaysis'){
             steps{
                 withSonarQubeEnv('SONAR_LOCAL'){
-                    sh "${scannerHome} -e -Dsonar.projectKey=DeployBack -Dsonar.host.url=http://localhost:9000 -Dsonar.login=409ede2263b0a9feffe50dd65d0e0572930c993a -Dsonar.java.binaries=target"
+                    sh "${scannerHome}/bin/sonar-canner -e -Dsonar.projectKey=DeployBack -Dsonar.host.url=http://localhost:9000 -Dsonar.login=409ede2263b0a9feffe50dd65d0e0572930c993a -Dsonar.java.binaries=target"
                 }
             }
         }
