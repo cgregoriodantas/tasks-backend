@@ -3,7 +3,7 @@ pipeline{
     stages{
         stage('Build Backend'){
             steps{
-                sh 'mvnw clean'
+                sh '/var/jenkins_home/tools/hudson.tasks.Maven_MavenInstallation/MVN_LOCAL/bin/mvn clean package'
             }
         }
     }
