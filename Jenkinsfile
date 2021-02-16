@@ -7,13 +7,13 @@ pipeline{
     stages{
         stage('Build Backend'){
             steps{
-                sh '$MVN clean package -DskipTests=true'
+                sh "${MVN} clean package -DskipTests=true"
             }
         }
         
         stage('Unit Tests'){
             steps{
-                sh '$MVN test'
+                sh "${MVN} test"
             }
         }
 
