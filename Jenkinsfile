@@ -1,9 +1,12 @@
 pipeline{
     agent any
+    environment{
+        MVN = '/var/jenkins_home/tools/hudson.tasks.Maven_MavenInstallation/MVN_LOCAL/bin/mvn'
+    }
     stages{
         stage('Build Backend'){
             steps{
-                sh '/var/jenkins_home/tools/hudson.tasks.Maven_MavenInstallation/MVN_LOCAL/bin/mvn clean package -DskipTests=true'
+                sh '$MVN clean package -DskipTests=true'
             }
         }
     }
