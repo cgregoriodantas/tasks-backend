@@ -9,12 +9,10 @@ pipeline{
                 sh '$MVN clean package -DskipTests=true'
             }
         }
-    }
-    stages{
         stage('Unit Tests'){
             steps{
                 sh '$MVN test'
             }
         }
-    }
+    }    
 }
