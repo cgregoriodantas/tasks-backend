@@ -3,7 +3,7 @@ pipeline{
     stages{
         stage('Build Backend'){
             steps{
-                sh 'mvn clean package sonar:sonar'
+                sh 'mvnw clean package sonar:sonar'
             }
         }
     }
